@@ -12,6 +12,10 @@ class MyComponent extends React.Component {
         });
     }
 
+    handleClickButton = () => {
+        console.log('hit the button');
+        alert('Click me');
+    }
     render() {
         let name = 'Kiểu'
         return (
@@ -34,6 +38,10 @@ class MyComponent extends React.Component {
                     Tôi làm việc tại {this.state['company']}
                 </div>
 
+
+                <div className="button">
+                    <button type="button" onClick={()=> this.handleClickButton()}>Click me</button>
+                </div>
             </>
                 
             // </React.Fragment>
