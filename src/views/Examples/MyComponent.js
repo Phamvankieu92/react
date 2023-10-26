@@ -55,9 +55,9 @@ class MyComponent extends React.Component {
                     />
                 </form>
 
-                <ChildComponent name = {'child one'}/> 
-                <ChildComponent name = {'child two'}/> 
-                <ChildComponent name = {'child three'}/>        
+                <ChildComponent name = {'child one'} age = {18}/> 
+                <ChildComponent name = {'child two'} age = {20} /> 
+                <ChildComponent name = {'child three'} age = {23}/>        
             </>
             // </React.Fragment>
         )
