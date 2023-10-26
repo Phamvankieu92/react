@@ -3,11 +3,17 @@ import ChildComponent from "./ChildComponent";
 class MyComponent extends React.Component {
     state = {
         firstname: "",
-        lastname: ""
+        lastname: "",
+        arrJobs:[
+            {id:'a123', title: 'Developers', salary:'500 $'},
+            {id:'a124', title: 'Testers', salary:'400 $'},
+            {id:'a125', title: 'Project Managers', salary:'1500 $'},
+            
+        ]
     }
 
     handleChangeFirstName =(event) => {
-        this.setState({ firstName: event.target.value });
+        this.setState({ firstname: event.target.value });
     }
 
     handleChangeLastName =(event) => {
@@ -23,7 +29,7 @@ class MyComponent extends React.Component {
         alert('Click me')
     }
     render() {
-        console.log('>>> call render: ' ,  this.state)
+        console.log('>>> call render1: ' ,  this.state)
         return (
             // <React.Fragment>
             <>
@@ -31,20 +37,19 @@ class MyComponent extends React.Component {
                     <label htmlFor='fnname'>First name</label><br />
                     <input 
                         type="text" 
-                        value={this.state.firstName} 
+                        value={this.state.firstname} 
                         onChange={(event) => this.handleChangeFirstName(event)} 
                     />
                     <br />
+
                     <label htmlFor='lnname'>Last name</label><br />
-                    
                     <input type="text" value={this.state.lastName} 
                         onChange={(event) => this.handleChangeLastName(event)}
                     />
-                    
                     <br />
                     <input 
                         type="button" 
-                        value="Submit" 
+                        value="Submit"
                         onClick={()=>this.handleSubmit()}
                     />
 
@@ -55,9 +60,9 @@ class MyComponent extends React.Component {
                     />
                 </form>
 
-                <ChildComponent name = {'child one'} age = {18}/> 
-                <ChildComponent name = {'child two'} age = {20} /> 
-                <ChildComponent name = {'child three'} age = {23}/>        
+                <ChildComponent name = {this.state.firstname} age = {18} arrJobs={this.state.arrJobs}/> 
+                {/* <ChildComponent name = {'abc'} age = {20} /> 
+                <ChildComponent name = {'child three'} age = {23}/>         */}
             </>
             // </React.Fragment>
         )

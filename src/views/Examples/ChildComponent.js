@@ -7,13 +7,24 @@ class ChildComponent extends React.Component {
         // let name = this.props.name;
         // let age = this.props.age;
 
-        let {name, age} = this.props
+        // let {name, age, arrJobs} = this.props;
+        
+        let arrJobs = this.props.arrJobs;
+        
         return (
             // <React.Fragment>
             
             <>
-                <div>
-                    child component name: {name} - {age} - KDE
+                <div className="job-lists">
+                    {
+                        arrJobs.map((item,index) => {
+                            return (
+                                <div key={item.id}>
+                                    ID: {item.id} - Title: {item.title} - Salary: {item.salary}
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 
             </>
@@ -21,5 +32,5 @@ class ChildComponent extends React.Component {
         )
     }
 }
-
+ 
 export default ChildComponent
