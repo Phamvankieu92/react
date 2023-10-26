@@ -34,6 +34,33 @@ class MyComponent extends React.Component {
         return (
             // <React.Fragment>
             <>
+                <form>
+                    <label htmlFor='fnname'>First name</label><br />
+                    <input 
+                        type="text" 
+                        value={this.state.firstname} 
+                        onChange={(event) => this.handleChangeFirstName(event)} 
+                    />
+                    <br />
+
+                    <label htmlFor='lnname'>Last name</label><br />
+                    <input type="text" value={this.state.lastName} 
+                        onChange={(event) => this.handleChangeLastName(event)}
+                    />
+                    <br />
+                    <input 
+                        type="button" 
+                        value="Submit"
+                        onClick={()=>this.handleSubmit()}
+                    />
+
+                    <input 
+                        type="submit" 
+                        value="Submit 2" 
+                        onClick={(event)=>this.handleSubmit_2(event)}
+                    />
+                </form>
+
                 <ChildComponent name = {this.state.firstname} age = {18} arrJobs={this.state.arrJobs}/> 
                 {/* <ChildComponent name = {'abc'} age = {20} /> 
                 <ChildComponent name = {'child three'} age = {23}/>         */}

@@ -15,6 +15,7 @@ class ChildComponent extends React.Component {
             // <React.Fragment>
             
             <>
+                <div><button>Show</button></div>
                 <div className="job-lists">
                     {
                         arrJobs.map((item,index) => {
@@ -26,7 +27,8 @@ class ChildComponent extends React.Component {
                         })
                     }
                 </div>
-                
+                <div><button>Hide</button></div>
+
             </>
             // </React.Fragment>
         )
