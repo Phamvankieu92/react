@@ -2,11 +2,11 @@ import React from "react";
 
 class AddComponent extends React.Component {
     state = {
-        titleJob:'',
+        title:'',
         salary:'',
     }
-    handleChangeTitleJob =(event) => {
-        this.setState({ titleJob: event.target.value });
+    handleChangetitle =(event) => {
+        this.setState({ title: event.target.value });
     }
 
     handleChangeSalary =(event) => {
@@ -14,7 +14,23 @@ class AddComponent extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!this.state.salary || !this.state.title) {
+            alert('Missing required parameters');
+            return;
+        }
         console.log('>>> Check data input: ', this.state)
+        this.props.addNewJob({
+            id: Math.floor(Math.random()*1000),
+            title: this.state.title,
+            salary: this.state.salary
+        })
+
+        this.setState({
+            title: '',
+            salary: ''
+        }
+        )
     }
     render() {
         return (
@@ -22,8 +38,8 @@ class AddComponent extends React.Component {
                     <label htmlFor='fnname'>Title Job</label><br />
                     <input 
                         type="text" 
-                        value={this.state.titleJob}  
-                        onChange={(event) => this.handleChangeTitleJob(event)} 
+                        value={this.state.title}  
+                        onChange={(event) => this.handleChangetitle(event)} 
                     />
                     <br />
 

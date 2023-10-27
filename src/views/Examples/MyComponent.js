@@ -12,15 +12,11 @@ class MyComponent extends React.Component {
         ]
     }
 
-    
-
-    handleSubmit = () => {
-        alert('Click me')
-    }
-
-    handleSubmit_2 = (event) => {
-        event.preventDefault()
-        alert('Click me')
+    addNewJob = (job) =>{
+        this.setState({
+            arrJobs: [...this.state.arrJobs,job]
+        })
+        console.log('check job from parent: ', job); 
     }
 
     render() {
@@ -28,8 +24,8 @@ class MyComponent extends React.Component {
         return (
             // <React.Fragment>
             <>
-                <AddComponent />
-                
+                <AddComponent addNewJob={this.addNewJob} />
+                {/* addNewJob = {this.state.arrJobs.addNewJob} */}
 
                 <ChildComponent arrJobs={this.state.arrJobs}/> 
                 {/* <ChildComponent name = {'abc'} age = {20} /> 
