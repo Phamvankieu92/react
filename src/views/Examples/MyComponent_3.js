@@ -1,9 +1,10 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
-import AddComponent from "./AddComponent";
 
 class MyComponent extends React.Component {
     state = {
+        firstname: "",
+        lastname: "",
         arrJobs:[
             {id:'a123', title: 'Developers', salary:'500'},
             {id:'a124', title: 'Testers', salary:'400'},
@@ -12,7 +13,13 @@ class MyComponent extends React.Component {
         ]
     }
 
-    
+    handleChangeFirstName =(event) => {
+        this.setState({ firstname: event.target.value });
+    }
+
+    handleChangeLastName =(event) => {
+        this.setState({ lastName: event.target.value });
+    }
 
     handleSubmit = () => {
         alert('Click me')
@@ -28,10 +35,7 @@ class MyComponent extends React.Component {
         return (
             // <React.Fragment>
             <>
-                <AddComponent />
-                
-
-                <ChildComponent arrJobs={this.state.arrJobs}/> 
+                <ChildComponent name = {this.state.firstname} age = {18} arrJobs={this.state.arrJobs}/> 
                 {/* <ChildComponent name = {'abc'} age = {20} /> 
                 <ChildComponent name = {'child three'} age = {23}/>         */}
             </>
