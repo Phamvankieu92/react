@@ -27,9 +27,15 @@ class MyComponent extends React.Component {
         currentJobs = currentJobs.filter(item => item.id !== job.id)
         this.setState({ arrJobs: currentJobs})
     }
-
+    
+    componentDidUpdate(prevProps,prevState) {
+        console.log('>>> run did update:','pre state: ' , prevState, ' current state: ' , this.state)
+    }
+    componentDidMount() {
+        console.log('>>>Run component did mount')   
+    }
     render() {
-        console.log('>>> call render1: ' ,  this.state)
+        console.log('>>> call render: ' ,  this.state)
         return (
             // <React.Fragment>
             <>
