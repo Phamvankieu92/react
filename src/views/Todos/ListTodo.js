@@ -10,7 +10,10 @@ class ListTodo extends React.Component {
             {id: 'todo1', title: 'Doing homework'},
             {id: 'todo2', title: 'Making videos'},
             {id: 'todo3', title: 'Fixing bugs'}
-        ]
+        ],
+        editTodo:{
+
+        }
     }
 
     addNewTodo=(todo) => {
@@ -24,10 +27,44 @@ class ListTodo extends React.Component {
 
         toast.success('Todo successfully added');
     }
-    render() {
-        let {listTodos} = this.state;
-        // let listTodos = this.state.listTodos;
+
+    handleDeleteTodo = (todo) => {
+        console.log('>>> check delete todo: ',todo)
+        let currentTodos = this.state.listTodos;
+        currentTodos=currentTodos.filter(item => item.id !==todo.id);
+        this.setState({listTodos: currentTodos});
+        toast.success('Todo deleted successfully');
+    }
+    handleEditTodo = (todo) => {
+        let {editTodo,listTodos} = this.state;
+        let isEmptyObj = Object.keys(editTodo).length===0;
+        if (isEmptyObj===false && editTodo.id===todo.id) {
+            // save
+            let listTodosCopy = [...listTodos];
+            let objIndex = listTodosCopy.findIndex((item=>item.id===todo.id));
+            listTodosCopy[objIndex].title = editTodo.title;
+            this.setState({
+                listTodos: listTodosCopy,
+                editTodo: {}
+            });
+            toast.success('Edit Todo successfully')
+            return;
+        } else {
+            // edit
+            this.setState({editTodo: todo});
+        }
         
+    }
+    handleOnChangeEditTodo = (event) => {
+        let editTodoCopy = {...this.state.editTodo};
+        editTodoCopy.title = event.target.value;
+        this.setState({editTodo: editTodoCopy});
+    }
+    render() {
+        let {listTodos,editTodo} = this.state;
+        // let listTodos = this.state.listTodos;
+        let isEmptyObj = Object.keys(editTodo).length===0;
+        console.log('>>> Check empty object', isEmptyObj);
         return (
             <div className="list-todo-container">
                 <AddTodo
@@ -41,11 +78,26 @@ class ListTodo extends React.Component {
                           return (
                             <div className="todo-child" key={item.id}>
                                 <div className="todo-info">
-                                    <span>{index+1} - {item.title}</span>
+                                    {(isEmptyObj === false && editTodo.id===item.id) ?
+                                        <span>
+                                            {index+1} - <input 
+                                            value={editTodo.title}
+                                            onChange={(event)=> this.handleOnChangeEditTodo(event)}
+                                            ></input>
+                                        </span>
+                                        
+                                    :
+                                        <span>{index+1} - {item.title}</span>
+                                        
+                                    }
+                                    
+                                    
                                 </div>
                                 <div className="todo-actions">
-                                    <button className="edit" >Edit</button>
-                                    <button className="delete">Delete</button>
+                                    <button className="edit" onClick={()=>this.handleEditTodo(item)}>
+                                        {isEmptyObj===false && editTodo.id===item.id ? 'Save' : 'Edit'}
+                                    </button>
+                                    <button className="delete" onClick={()=>this.handleDeleteTodo(item)} >Delete</button>
                                 </div>   
                             </div>
                           )
