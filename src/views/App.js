@@ -1,6 +1,11 @@
 import logo from './logo.svg';
-import './App.scss';
-import MyComponent from './Examples/MyComponent';
+import './App_ToDo.scss';
+// import MyComponent from './Examples/MyComponent_1';
+import ListTodo from './Todos/ListTodo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 /**
  * 2 components: class components/ function components (function, arrow)
  * 
@@ -16,19 +21,22 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Phạm Văn Kiểu nè!
+          Simple TODO Apps with React.js
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-
-        <MyComponent></MyComponent>
+        <ListTodo></ListTodo>
       </header>
+      <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
     </div>
   );
 }

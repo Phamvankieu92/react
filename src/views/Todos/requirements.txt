@@ -1,0 +1,4 @@
+npm install --save-exact react-toastify@8.0.2
+https://www.npmjs.com/package/react-toastify
+npm install --save react-toastify
+https://fkhadra.github.io/react-toastify/introduction/
